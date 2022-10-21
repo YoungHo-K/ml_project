@@ -55,11 +55,15 @@ class EvaluationMetrics:
 
 
 class Classifier:
-    def __init__(self, cv=5):
+    def __init__(self, classifier=None, cv=5):
+        if classifier is None:
+            raise Exception("[ERROR] Invalid classifier.")
+        
+        self.classifier = classifier
         self.cv = cv
 
-    def evaluate(self, classifier=None, X=None, y=None):
-        if (classifier is None) or (X is None) or (y is None):
+    def evaluate(self, X=None, y=None):
+        if (X is None) or (y is None):
             raise Exception("[ERROR] Invalid parameters.")
 
         evaluation_metrics = EvaluationMetrics()
@@ -71,7 +75,7 @@ class Classifier:
             y_train_data =y[train_indexes]
             y_test_data = y[test_indexes]
 
-            classifier = clone(classifier)
+            classifier = clone(self.classifier)
 
             start_time = time.time()
             classifier.fit(X_train_data, y_train_data)
@@ -91,5 +95,5 @@ if __name__ == "__main__":
 
     X, y = load_iris(return_X_y=True)
 
-    classifier = Classifier(cv=5)
-    classifier.evaluate(classifier=DecisionTreeClassifier(max_depth=10), X=X, y=y)
+    classifier = Classifier(classifier=DecisionTreeClassifier(max_depth=10), cv=5)
+    classifier.evaluate(X=X, y=y)
