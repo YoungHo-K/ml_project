@@ -88,12 +88,3 @@ class Classifier:
 
         print(evaluation_metrics.get_result())
 
-
-if __name__ == "__main__":
-    from sklearn.datasets import load_iris
-    from sklearn.tree import DecisionTreeClassifier
-
-    X, y = load_iris(return_X_y=True)
-
-    classifier = Classifier(classifier=DecisionTreeClassifier(max_depth=10), cv=5)
-    classifier.evaluate(X=X, y=y)

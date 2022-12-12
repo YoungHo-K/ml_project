@@ -41,6 +41,8 @@ class CumulativeFeature:
         features.append(size_of_total_outgoing_packet)
 
         features.extend(self._get_interpolated_cumulative_packet_size(cumulative_packet_size_list, abs_cumulative_packet_size_list))
+        if len(features) != self.number_of_features + 4:
+            return None
 
         return features
 

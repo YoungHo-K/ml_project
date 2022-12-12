@@ -37,3 +37,4 @@ class TestModel:
                                          kernel_initializer='he_normal', input_shape=input_shape, data_format=channel_order))
 
         return model
+

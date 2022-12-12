@@ -1,7 +1,5 @@
 import numpy as np
 
-from scipy.stats import skew
-
 
 def get_max_in_list(values):
     if len(values) == 0:
@@ -38,13 +36,6 @@ def get_std_in_list(values):
     return np.std(values)
 
 
-def get_skew_in_list(values):
-    if len(values) == 0:
-        return None
-
-    return skew(values)
-
-
 def get_statistics(values):
     statistic_values = list()
 
@@ -53,6 +44,5 @@ def get_statistics(values):
     statistic_values.append(get_sum_in_list(values))
     statistic_values.append(get_mean_in_list(values))
     statistic_values.append(get_std_in_list(values))
-    statistic_values.append(get_skew_in_list(values))
 
     return statistic_values
